@@ -167,75 +167,47 @@ body {
 }
 
 #hero-unit .clear-gradient-button {
-    /* Clear background to show the site's light grey/blue wash */
-    background: rgba(255, 255, 255, 0.2); 
-    backdrop-filter: blur(8px);
-    
-    /* Using the Navy from the jacket for the text and border */
-    color: #081735; 
-    border: 2px solid rgba(8, 23, 53, 0.3);
-    
+    position: relative; /* Crucial for pseudo-elements to align correctly */
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     padding: 14px 35px;
     border-radius: 50px;
     font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    text-decoration: none;
+    
+    /* Typography & Core Borders */
+    color: #720f0f; /* Matches the white text in your screenshot */
+    border: 2px solid #F9FD01; 
+    background: #F4E04D;
+    
+    /* Smooth transitions for everything */
     transition: all 0.3s ease;
+    overflow: hidden;
+    z-index: 1;
 }
 
-
-/* Border and Gradient Overlay (Inner Glow) */
-.clear-gradient-button::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    border-radius: 50px;
-    padding: 2px; /* Set the border thickness */
-    
-    /* The core purple gradient on the border */
-    background: linear-gradient(135deg, #f9fd01 0%, #f9fd01 100%);
-    
-    /* Blend the gradient so it looks clear */
-    -webkit-mask: linear-gradient(#f9fd01 0 0) content-box, linear-gradient(#f9fd01 0 0);
-    mask: linear-gradient(#f9fd01 0 0) content-box, linear-gradient(#f9fd01 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
+/* Star/Sparkle Icon Styling */
+.clear-gradient-button .icon-sparkle {
+    color: #ffffff; 
+    transition: color 0.3s ease;
 }
 
-/* Glassmorphism Clear Fill Layer */
-.clear-gradient-button::after {
-    content: '';
-    position: absolute;
-    top: 2px; left: 2px; right: 2px; bottom: 2px;
-    background: #F4E04D; /* Transparent clear white fill */
-    border-radius: 50px;
-    backdrop-filter: blur(5px); /* Crucial for glass effect */
-    z-index: -1;
-}
+/* FORCED HOVER EFFECTS */
 
-/* Sparkle Icon Styling */
-/* The sparkle icon matches the golden yellow text in the screenshot */
-.icon-sparkle {
-    color: #f3b51a; 
-}
-
-/* HOVER EFFECTS */
-.clear-gradient-button:hover {
-    background: #081735;
-    color: #ffffff;
-    box-shadow: 0 10px 20px rgba(8, 23, 53, 0.2);
+/* Target the button text strictly on hover */
+#hero-unit .clear-gradient-button:hover {
+    background: #f3cf05 !important;
+    color: #A31D1D !important; /* Maroon / Light Red color */
+    border-color: #A31D1D !important;
     transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(8, 23, 53, 0.2);
 }
 
-.clear-gradient-button:hover::before {
-    /* Make the border gradient more vibrant on hover */
-    background: linear-gradient(135deg, rgba(160, 80, 255, 0.8) 0%, rgba(120, 70, 180, 0.8) 100%);
-}
-
-.clear-gradient-button:hover .icon-sparkle {
-    color: #fff; /* Light purple highlight for icon on hover */
-    opacity: 1;
+/* Target the icon inside the button strictly on hover */
+#hero-unit .clear-gradient-button:hover .icon-sparkle,
+#hero-unit .clear-gradient-button:hover * {
+    color: #A31D1D !important; /* Forces the star icon to match the maroon text */
 }
 
 #features {
@@ -292,132 +264,7 @@ body {
     text-align: center;
 }
 
-
-#featured-products {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 0 60px;
-}
-
-.featured-products-items{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 50px;
-    margin: 50px 0;   
-}
-
-
-.feature-img{
-    width: 25vw;
-    height: auto;
-    border-radius: 25px;
-}
-
-
-/*
-#hero {
-    background-image: url('../images/hero4.png');
-    width: 100%;
-    height: 100vh;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 0 80px;
-}
-
-#hero h4 {
-    padding-bottom: 15px;
-    font-size: 40px;
-}
-
-#hero h2 {
-    font-size: 70px;
-
-}
-
-#hero h1 {
-    color: #088178;
-    font-size: 70px;
-
-}
-
-#hero button {
-    background-color: transparent;
-    background-image: url(../images/button.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 260px;
-    height: 60px;
-    border: 0;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: 700;
-    color: #088178;
-    padding: 14px 65px 14px 65px;
-}
-
-/* feature section styles */
-/* 
-#features {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-#features .f-box {
-    width: 180px;
-    text-align: center;
-    padding: 25px 15px;
-    box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.03);
-    border: 1px solid #cce7d0;
-    border-radius: 5px;
-    margin: 15px 0;
-    transition: box-shadow 0.3s;
-}
-
-#features .f-box:hover {
-    box-shadow: 10px 10px 54px rgba(0, 0, 0, 0.2);
-}
-
-#features .f-box img {
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-#features .f-box h6 {
-    display: inline-block;
-    padding: 9px 8px 6px 8px;
-    line-height: 1;
-    font-size: 14px;
-    border-radius: 4px;
-    color: #088178;
-    background-color: #fddde4;
-}
-
-#features .f-box:nth-child(2) h6 {
-    background-color: #cdebbc;
-}
-
-#features .f-box:nth-child(3) h6 {
-    background-color: #d1e8f2;
-}
-
-#features .f-box:nth-child(4) h6 {
-    background-color: #cdd4f8;
-}
-
-#features .f-box:nth-child(5) h6 {
-    background-color: #f6dbf6;
-}
-
-#features .f-box:nth-child(6) h6 {
-    background-color: #fff2e5;
-} */
+/*---------------------------------------------------------------------------------*/
 
 /* feature section styles */
 
@@ -690,4 +537,4 @@ span {
 #footer .download img {
     border: 1px solid #08817969;
     border-radius: 7px;
-} 
+}
